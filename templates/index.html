@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <style>
+        /* Create four equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 18%;
+          height: 10px;
+          padding: 10px;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .button {
+          background-color: #72bcd4;
+          border: true;
+          border-radius: 10%;
+          color: white;
+          padding: 0px 15px;
+          text-align: center;
+          font-size: 15px;
+          cursor: pointer;
+        }
+        .button:hover {
+          background-color: green;
+        }
+        .search-bar {
+          max-width: 500px;
+          width:100%
+        }
+    </style>
+</head>
+<body>
+    <div align="center">
+        <h1>CONTACT LIST</h1>
+    </div>
+    <div class="search-bar">
+        <form method="get">
+            <input type="text" id="search-input" type="text" name="search_input" placeholder="Search..." value="{{query}}">
+            <button class="button" type="submit">Search</button>
+            Total number of hits: {{total}}
+        </form>
+    </div>
+    <div>
+        <form action="add" method="GET">
+            <button class="button" type="submit">Add New Contact</button>
+        </form>
+
+    </div>
+    <div class="row" >
+        <h3>
+            <div class="column">First Name</div>
+            <div class="column">Middle Name</div>
+            <div class="column">Last Name</div>
+        </h3>
+    </div>
+    {% for personalInfo in personalInfoList%}
+    <div class="row" style="background-color:lightblue">
+        <b>
+            <div class="column">{{personalInfo.contact.fname}}</div>
+            <div class="column">{{personalInfo.contact.mname}}</div>
+            <div class="column">{{personalInfo.contact.lname}}</div>
+        </b>
+        <form action="{% url 'modify' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="contact_id" value="{{personalInfo.contact.contact_id}}">
+            <button class="button" type="submit" name='modify'>Modify</button>
+        </form>
+        <form action="{% url 'delete' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="contact_id" value="{{personalInfo.contact.contact_id}}">
+            <button class="button" type="submit" name='delete'>Delete</button>
+        </form>
+    </div>
+    <div style="background-color:#e8f4f8">
+        {% for address in personalInfo.addressList%}
+        <div class="row">
+            <div class="column"><b>Address ({{address.address_type}}):</b></div>
+            <div class="column"><b>Street :</b> {{address.address}}</div>
+            <div class="column"><b>City :</b> {{address.city}}</div>
+            <div class="column"><b>State :</b> {{address.state}}</div>
+            <div class="column"><b>Zipcode :</b> {{address.zip}}</div>
+        </div>
+        {%endfor%}
+        {% for phone in personalInfo.phoneList%}
+        <div class="row">
+            <div class="column"><b>Phone ({{phone.phone_type}}):</b></div>
+            <div class="column"><b>Area Code:</b> {{phone.area_code}}</div>
+            <div class="column"><b>Number:</b> {{phone.number}}</div>
+        </div>
+        {%endfor%}
+        {% for date in personalInfo.dateList%}
+        <div class="row">
+            <div class="column"><b>Date ({{date.date_type}}):</b></div>
+            <div class="column">{{date.date}}</div>
+        </div>
+        {%endfor%}
+    </div>
+    {%endfor%}
+</body>
+</html>

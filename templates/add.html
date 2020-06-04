@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Contact Form</title>
+    <style>
+        /* Create four equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 8%;
+          height: 10px;
+          padding: 10px;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .button {
+          margin: 10px;
+          background-color: #72bcd4;
+          border: true;
+          color: white;
+          padding: 5px 15px;
+          text-align: center;
+          font-size: 15px;
+          cursor: pointer;
+        }
+        .button:hover {
+          background-color: green;
+        }
+    </style>
+</head>
+<body>
+<form action="add" method="post">
+    {%csrf_token%}
+    <h2>ADD NEW CONTACT FORM</h2>
+    <h3>Contact</h3>
+    <div class="row">
+        <div class="column"><b>First Name:</b></div>
+        <div class="column"><input type="text" name="fname" required></div>
+    </div>
+    <div class="row">
+        <div class="column">Middle Name:</div>
+        <div class="column"><input type="text" name="mname"></div>
+    </div>
+    <div class="row">
+        <div class="column"><b>Last Name:</b></div>
+        <div class="column"><input type="text" name="lname" required></div>
+    </div>
+    <h3>Address List</h3>
+    <div id="address-div-id">
+        <div class="row">
+            <div class="column">Type of Address: </div>
+            <div class="column"><input type="text" name="address_type"></div>
+        </div>
+        <div class="row">
+            <div class="column">Street Address: </div>
+            <div class="column"><input type="text" name="address"></div>
+        </div>
+        <div class="row">
+            <div class="column">City: </div>
+            <div class="column"><input type="text" name="city"></div>
+        </div>
+        <div class="row">
+            <div class="column">State: </div>
+            <div class="column"><input type="text" name="state"></div>
+        </div>
+        <div class="row">
+            <div class="column">Zipcode: </div>
+            <div class="column"><input type="text" name="zip"></div>
+        </div>
+    </div>
+    <button type="button" class="button" onclick="addAddress()" id="add-address-button">Add Another Address</button>
+    <h3>Phone Number List</h3>
+    <div id="phone-div-id">
+        <div class="row">
+            <div class="column">Type of Number: </div>
+            <div class="column"><input type="text" name="phone_type"></div>
+        </div>
+        <div class="row">
+            <div class="column">Area Code: </div>
+            <div class="column"><input type="text" name="area_code"></div>
+        </div>
+        <div class="row">
+            <div class="column">Number: </div>
+            <div class="column"><input type="text" name="number"></div>
+        </div>
+    </div>
+    <button type="button" class="button" onclick="addPhone()" id="add-phone-button">Add Another Phone Number</button>
+    <h3>Date List</h3>
+    <div id="date-div-id">
+        <div class="row">
+            <div class="column">Type of Date: </div>
+            <div class="column"><input type="text" name="date_type"></div>
+        </div>
+        <div class="row"><div class="column">Date: </div>
+            <div class="column"><input type="date" name="date" required></div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="button" onclick="addDate()" id="add-date-button">Add Another Date</button>
+    </div>
+    <input class="button" type="submit">
+</form>
+<script>
+        function addAddress() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Address: </div><div class="column"><input type="text" name="address_type"></div></div><div class="row"><div class="column">Street Address: </div><div class="column"><input type="text" name="address"></div></div><div class="row"><div class="column">City: </div><div class="column"><input type="text" name="city"></div></div><div class="row"><div class="column">State: </div><div class="column"><input type="text" name="state"></div></div><div class="row"><div class="column">Zipcode: </div><div class="column"><input type="text" name="zip"></div></div>';
+          document.getElementById("address-div-id").appendChild(div);
+        }
+        function addPhone() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Number: </div><div class="column"><input type="text" name="phone_type"></div></div><div class="row"><div class="column">Area Code: </div><div class="column"><input type="text" name="area_code"></div></div><div class="row"><div class="column">Number: </div><div class="column"><input type="text" name="number"></div></div>';
+          document.getElementById("phone-div-id").appendChild(div);
+        }
+        function addDate() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Date: </div><div class="column"><input type="text" name="date_type"></div></div><div class="row"><div class="column">Date: </div><div class="column"><input type="date" name="date" required></div></div>';
+          document.getElementById("date-div-id").appendChild(div);
+        }
+    </script>
+</body>
+</html>

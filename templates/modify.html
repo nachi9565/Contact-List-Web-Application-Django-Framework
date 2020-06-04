@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Contact Form</title>
+    <style>
+        /* Create four equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 8%;
+          height: 10px;
+          padding: 10px;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .button {
+          margin: 10px;
+          background-color: #72bcd4;
+          border: true;
+          color: white;
+          padding: 5px 15px;
+          text-align: center;
+          font-size: 15px;
+          cursor: pointer;
+        }
+        .button:hover {
+          background-color: green;
+        }
+    </style>
+</head>
+<body>
+<form action="modifysubmit" method="POST">
+    {%csrf_token%}
+    <h2>MODIFY CONTACT FORM</h2>
+    <h3>Contact</h3>
+    <input type="hidden" name="contact_id" value="{{personalInfo.contact.contact_id}}">
+    <div class="row"><div class="column">First Name: </div><div class="column"><input type="text" name="fname" value="{{personalInfo.contact.fname}}"></div></div>
+    <div class="row"><div class="column">Middle Name: </div><div class="column"><input type="text" name="mname" value="{{personalInfo.contact.mname}}"></div></div>
+    <div class="row"><div class="column">Last Name: </div><div class="column"><input type="text" name="lname" value="{{personalInfo.contact.lname}}"></div></div>
+    <h3>Address List</h3>
+    <div id="address-div-id">
+        {%for address in personalInfo.addressList%}
+            <input type="hidden" name="address_id" value="{{address.address_id}}">
+            <div class="row">
+                <div class="column">Type of Address:</div>
+                <div class="column"><input type="text" name="address_type" value="{{address.address_type}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">Street Address: </div>
+                <div class="column"><input type="text" name="address" value="{{address.address}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">City: </div>
+                <div class="column"><input type="text" name="city" value="{{address.city}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">State: </div>
+                <div class="column"><input type="text" name="state" value="{{address.state}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">Zipcode: </div>
+                <div class="column"><input type="text" name="zip" value="{{address.zip}}"></div>
+            </div>
+        {%endfor%}
+    </div>
+    <button type="button" class="button" onclick="addAddress()" id="add-address-button">Add Another Address</button>
+    <h3>Phone Number List</h3>
+    <div id="phone-div-id">
+        {%for phone in personalInfo.phoneList%}
+            <input type="hidden" name="phone_id" value="{{phone.phone_id}}">
+            <div class="row">
+                <div class="column">Type of Number: </div>
+                <div class="column"><input type="text" name="phone_type" value="{{phone.phone_type}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">Area Code: </div>
+                <div class="column"><input type="text" name="area_code" value="{{phone.area_code}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">Number: </div>
+                <div class="column"><input type="text" name="number" value="{{phone.number}}"></div>
+            </div>
+        {%endfor%}
+    </div>
+    <button type="button" class="button" onclick="addPhone()" id="add-phone-button">Add Another Phone Number</button>
+    <h3>Date List</h3>
+    <div id="date-div-id">
+        {%for date in personalInfo.dateList%}
+            <input type="hidden" name="date_id" value="{{date.date_id}}">
+            <div class="row">
+                <div class="column">Type of Date: </div>
+                <div class="column"><input type="text" name="date_type" value="{{date.date_type}}"></div>
+            </div>
+            <div class="row">
+                <div class="column">Date: </div><input type="date" name="date" value="{{date.date|date:'Y-m-d'}}" required>
+            </div>
+        {%endfor%}
+    </div>
+    <button type="button" class="button" onclick="addDate()" id="add-date-button">Add Another Date</button>
+    <div class="row">
+        <input class="button" type="submit">
+    </div>
+</form>
+<script>
+        function addAddress() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Address: </div><div class="column"><input type="text" name="address_type"></div></div><div class="row"><div class="column">Street Address: </div><div class="column"><input type="text" name="address"></div></div><div class="row"><div class="column">City: </div><div class="column"><input type="text" name="city"></div></div><div class="row"><div class="column">State: </div><div class="column"><input type="text" name="state"></div></div><div class="row"><div class="column">Zipcode: </div><div class="column"><input type="text" name="zip"></div></div>';
+          document.getElementById("address-div-id").appendChild(div);
+        }
+        function addPhone() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Number: </div><div class="column"><input type="text" name="phone_type"></div></div><div class="row"><div class="column">Area Code: </div><div class="column"><input type="text" name="area_code"></div></div><div class="row"><div class="column">Number: </div><div class="column"><input type="text" name="number"></div></div>';
+          document.getElementById("phone-div-id").appendChild(div);
+        }
+        function addDate() {
+          var div = document.createElement("div");
+          div.innerHTML = '<br><div class="row"><div class="column">Type of Date: </div><div class="column"><input type="text" name="date_type"></div></div><div class="row"><div class="column">Date: </div><div class="column"><input type="date" name="date" required></div></div>';
+          document.getElementById("date-div-id").appendChild(div);
+        }
+</script>
+</body>
+</html>

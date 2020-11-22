@@ -1,0 +1,24 @@
+<School id="Z8S1" name="Central Texas Tamil Academy" address="Elsa England Elementary, 8801 Pearson Ranch Road, Austin, TX 78717" zone="Z8" region="R4" contactstatus="NotContacted">
+  <Contact name="Ravi Mayavaram" email="ctta.principal.england@gmail.com" phone="(512) 468-1106" />
+  <State states="TX" />
+</School>
+<School id="Z8S2" name="Coppell Tamil Learning Center" address="773 S. MacArthur Blvd #225, Coppell, TX 75019" zone="Z8" region="R1" contactstatus="NotContacted">
+  <Contact name="Senthil Duraisamy" email="senthilselvan@yahoo.com" phone="(972)315-2544" />
+  <State states="TX" />
+</School>
+<School id="Z8S3" name="Metroplex Tamil Academy - Irving" address="Marthoma Event Center, 11550 Luna Rd, Dallas, TX 75234" zone="Z8" region="R1" contactstatus="NotContacted">
+  <Contact name="Sarath Balachandran" email="skbdtx@gmail.com" phone="4692122474" />
+  <State states="TX" />
+</School>
+<School id="Z8S4" name="Metroplex Tamil Academy - Flower Mound" address="Congregation Kolami, 1887 Timber Creek Road, Flower Mound, TX 75028" zone="Z8" region="R1" contactstatus="NotContacted">
+  <Contact name="Saravanan Gurusamy" email="geesarav@yahoo.com" phone="817-993-0013" />
+  <State states="TX" />
+</School>
+<School id="Z8S5" name="Avvai Tamil Center - Frisco" address="10660 Eldorado Pkwy, Frisco, TX 75035" zone="Z8" region="R2" contactstatus="NotContacted">
+  <Contact name="Nandhakumar Swaminathan" email="info@avvaitamil.org" phone="214-901-7735" />
+  <State states="TX" />
+</School>
+<School id="Z8S6" name="Avvai Tamil Center - Little Elm" address="3001 Woodlake Pkwy, Little Elm, TX 75068" zone="Z8" region="R2" contactstatus="NotContacted">
+  <Contact name="Praveen" email="info@avvaitamil.org" phone="8174129784" />
+  <State states="TX" />
+</School>
